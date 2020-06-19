@@ -1,28 +1,28 @@
 const supertest = require("supertest");
-const { intersect } = require("../database/dbConfig");
-const { expectCt } = require("helmet");
 
-// const jokes = require("./jokes-router");
+const dbConfig = require('../database/dbConfig')
+const server = require("../api/server");
 
-describe('test', () => {
-    it('should work', () => {
-        expect()
+describe('jokes-router.js', () => {
+    beforeAll(async ()=> {
+        await dbConfig("users").truncate();
     })
+
+    describe('GET /', () => {
+        it('should return 404 since not logged in', () => {
+            return supertest(server)
+                .get('/')
+                .then((res) => {
+                    expect(res.status).toBe(404)
+                })
+        })
+
+        it('says res type if error is thrown', () => {
+            return supertest(server)
+                .get('/')
+                .then((res) => {
+                    expect(res.type).toHaveLength(9)
+                })
+        })
+    }) 
 })
-
-// describe('jokes-router.js', () => {
-//     beforeAll(async ()=> {
-//         await dbConfig("hobbits").truncate();
-//     })
-
-//     describe('GET /', () => {
-//         it('should return 200 OK', () => {
-//             return supertest(jokes)
-//                 .get('/')
-//                 .then(res => {
-//                     expect(res.status).toBe(200)
-//                 })
-//         })
-
-//     }) 
-// })
