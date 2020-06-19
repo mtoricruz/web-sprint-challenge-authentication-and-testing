@@ -26,11 +26,19 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 1. Differences between using _sessions_ or _JSON Web Tokens_ for authentication.
 
+    Some stand out differences between sessions and JWT's are Cryptographic signatures. JWT's have these signatures while cookies do not. JWT is also stateless, they are stored client side rather than in a server's memory. Session cookies also only work across a single domain
+
 2. What does `bcrypt` do to help us store passwords in a secure manner.
+
+    bcrypt helps us store passwords by encrypting it using 3 different fields. 1 is the algorithm version used to encrypt the password, then there is a cost factor length and 3 is the salt/cipher text.
 
 3. How are unit tests different from integration and end-to-end testing.
 
+unit tests test small chunks of code seperately while intergration testing are a combination of those units tested working together
+
 4. How _Test Driven Development_ changes the way we write applications and tests.
+
+TDD changes the way we write applications because if we follow the 5 steps consistently we are forced to write more simple code that is constantly proven to be functional via our testing and refactoring.
 
 You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade.
 
@@ -51,7 +59,7 @@ Your finished project must include all of the following requirements:
 
 - [x] An authentication workflow with functionality for account creation and login implemented inside `/auth/auth-router.js`. A `user` has `username` and `password`. Both properties are required.
 - [x] Middleware used to restrict access to resources for non authenticated requests. Use the file: `./auth/authenticate-middleware.js` as a starting point.
-- [ ] Configuration for running tests using `Jest`.
+- [x] Configuration for running tests using `Jest`.
 - [ ] A **minimum o 2 tests** per API endpoint.
 
 **Note**: the database already has the users table, but if you run into issues, the migrations are available.
